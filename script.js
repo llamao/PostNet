@@ -15,7 +15,8 @@ var settings_list = {
 
     //var dataTemplate = $('.new').children().eq(0).prop('outerHTML');
     var dataTemplate = $('.new').prop('outerHTML');
-    $('.new').children().eq(0).hide();
+    //$('.new').children().eq(0).hide();
+    $('.new').hide();
   var buildCollectionBasedOnAPI = true;
   console.log(response);
 if (Array.isArray(response)) {
