@@ -13,7 +13,8 @@ var settings_list = {
   };
   $.ajax(settings_list).done(function (response) {
 
-    var dataTemplate = $('.new').children().eq(0).prop('outerHTML');
+    //var dataTemplate = $('.new').children().eq(0).prop('outerHTML');
+    var dataTemplate = $('.new').prop('outerHTML');
     $('.new').children().eq(0).hide();
   var buildCollectionBasedOnAPI = true;
   console.log(response);
@@ -23,11 +24,12 @@ if (Array.isArray(response)) {
     response.forEach((item) => {
     var dataTemplateActual = dataTemplate;
       dataTemplateActual = dataTemplateActual.replaceAll("[subject]", item.Subject).replaceAll("[subject]", item.Subject==undefined ? "" : item.Subject);
-  dataTemplateActual = dataTemplateActual.replaceAll("[content]", item.Content).replaceAll("[content]", item.Content==undefined ? "" : item.Content);
-  dataTemplateActual = dataTemplateActual.replaceAll("[img]", item.Image).replaceAll("[img]", item.Image==undefined ? "" : item.Image);
-  dataTemplateActual = dataTemplateActual.replaceAll("[user]", item.UserID).replaceAll("[user]", item.UserID==undefined ? "" : item.UserID);
+      dataTemplateActual = dataTemplateActual.replaceAll("[content]", item.Content).replaceAll("[content]", item.Content==undefined ? "" : item.Content);
+      dataTemplateActual = dataTemplateActual.replaceAll("[img]",     item.Image)  .replaceAll("[img]",     item.Image==undefined   ? "" : item.Image);
+      dataTemplateActual = dataTemplateActual.replaceAll("[user]",    item.UserID) .replaceAll("[user]",    item.UserID==undefined  ? "" : item.UserID);
 
     $('.new').append(dataTemplateActual);
+      $(parentCollectionClass + " " + '.post-image').attr('src',item.ImageURL);
 
   });
   }
